@@ -8,7 +8,10 @@ function Input({ inc_decClick, inc_dec_value, setInc_dec_value }) {
         onKeyUp={inc_decClick}
         value={inc_dec_value}
         onChange={(e) => {
-          setInc_dec_value(e.currentTarget.value);
+          const value = e.currentTarget.value;
+          if (value === "" || !isNaN(value)) {
+            setInc_dec_value(value || 0);
+          }
         }}
         className="border h-10 pl-3 w-full"
         type="number"
