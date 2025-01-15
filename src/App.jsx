@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Button from "./components/button";
+import Input from "./components/input";
 
 const Timer01Icon = (props) => (
   <svg
@@ -19,26 +21,6 @@ const Timer01Icon = (props) => (
     />
     <path
       d="M5 4.82C3.14864 6.63902 2 9.17385 2 11.9776C2 17.5129 6.47715 22.0001 12 22.0001C17.5228 22.0001 22 17.5129 22 11.9776C22 7.1242 18.5581 3.07656 13.9872 2.15288C13.1512 1.98394 12.7332 1.89947 12.3666 2.20022C12 2.50097 12 2.98714 12 3.95949V4.96175"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const RefreshIcon = (props) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width={24}
-    height={24}
-    color={"#ffffff"}
-    fill={"none"}
-    {...props}
-  >
-    <path
-      d="M20.0092 2V5.13219C20.0092 5.42605 19.6418 5.55908 19.4537 5.33333C17.6226 3.2875 14.9617 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12"
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
@@ -68,47 +50,9 @@ function App() {
       </h1>
       <h2 className="text-5xl text-center mt-4 font-bold">{number}</h2>
 
-      <div className="flex flex-col gap-1 mt-5">
-        <label>Increment/Decrement Value:</label>
-        <input
-          onKeyUp={inc_decClick}
-          value={inc_dec_value}
-          onChange={(e) => {
-            setInc_dec_value(e.currentTarget.value);
-          }}
-          className="border h-10 pl-3 w-full"
-          type="number"
-        />
-      </div>
+      <Input inc_decClick={inc_decClick} inc_dec_value={inc_dec_value} setInc_dec_value={setInc_dec_value} />
 
-      <div className="flex gap-4 mt-6">
-        <button
-          onClick={() => {
-            setNumber(number - inc_dec < 0 ? 0 : number - inc_dec);
-          }}
-          className="h-20 rounded-xl w-20 bg-red-600 text-2xl text-white"
-        >
-          <p>-</p>
-          <p>{inc_dec}</p>
-        </button>
-        <button
-          onClick={() => {
-            setNumber(number > 0 ? 0 : 0);
-          }}
-          className="h-20 rounded-xl w-20 bg-gray-600 text-2xl text-white px-[27px]"
-        >
-          <RefreshIcon />
-        </button>
-        <button
-          onClick={() => {
-            setNumber(number + inc_dec > 100 ? 100 : number + inc_dec);
-          }}
-          className="h-20 rounded-xl w-20 bg-green-600 text-2xl text-white"
-        >
-          <p>+</p>
-          <p>{inc_dec}</p>
-        </button>
-      </div>
+      <Button number={number} setNumber={setNumber} inc_dec={inc_dec} />
 
       <div className="flex gap-5 mt-5">
         <input
