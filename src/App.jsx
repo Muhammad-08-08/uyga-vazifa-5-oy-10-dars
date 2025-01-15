@@ -58,7 +58,10 @@ function App() {
         <input
           value={inputValue}
           onChange={(e) => {
-            setInputValue(e.currentTarget.value);
+            const value = e.currentTarget.value;
+            if (value === "" || !isNaN(value)) {
+              setInputValue(value || 0);
+            }
           }}
           className="border w-52 h-10 pl-2"
           type="number"
